@@ -1,4 +1,5 @@
 ﻿
+using System.Data;
 using System.Data.SqlClient;
 namespace Labb_1._SQL
 {
@@ -6,16 +7,14 @@ namespace Labb_1._SQL
     {
         static void Main(string[] args)
         {
-            string connectionString = @"Data Source=(localdb)\.;Initial Catalog=Labb1SQL;Integrated Security=True;Pooling=False;";
+        //    string connectionString = @"Data Source=(localdb)\.;Initial Catalog=Labb1SQL;Integrated Security=True;Pooling=False;";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
 
-
-              
-
-
-            };
+        //        Actions.GetMedianGrades(connection);
+        //    };
+            Meny.MainMeny();
         }
     }
 }
