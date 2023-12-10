@@ -57,7 +57,6 @@ namespace Labb_1._SQL
                     }
                 }
             }
-
         }
         public static void ListClasses(SqlConnection connection)
         {
@@ -105,14 +104,10 @@ namespace Labb_1._SQL
                 }
                 else
                 {
-
                     goto StartOfName;
                 }
-
                 string orderByName = "";    //Strings used to be used in wuerry later on the following uses a switch to sort them out 
                 string orderBySort = "";
-
-
                 switch (selectedIndex)
                 {
                     case 1:
@@ -130,7 +125,6 @@ namespace Labb_1._SQL
                         Console.WriteLine("Invalid input, please choose from the meny: ");
                         continue;
                 }
-
             StartOfSort: Console.Clear();
                 Console.WriteLine("To view students please choose from the meny\n" +
                     "[1] sorted list by Ascending\n" +
@@ -149,10 +143,8 @@ namespace Labb_1._SQL
                 }
                 else
                 {
-
                     goto StartOfSort;
                 }
-
                 switch (selectedIndex1)
                 {
                     case 1:
@@ -192,8 +184,6 @@ namespace Labb_1._SQL
                 }
                 ExitOrReturn();
             }
-
-
         }
         public static void ViewAllStaffMembers(SqlConnection connection)
         {
@@ -215,7 +205,6 @@ namespace Labb_1._SQL
             }
             else
             {
-
                 goto StartOfStaff;
             }
             switch (selectedIndex)
@@ -243,7 +232,6 @@ namespace Labb_1._SQL
                                 {
                                     connection.Close();
                                     goto StartOfStaff;
-
                                 }
                                 else
                                 {
@@ -263,7 +251,6 @@ namespace Labb_1._SQL
                     ConsoleKeyInfo keyInfo1 = Console.ReadKey(true);
 
                     if (int.TryParse(keyInfo1.KeyChar.ToString(), out int selectedRoleId))
-
                     {
                         using (SqlCommand cmd = new SqlCommand($"SELECT Staff.FirstName,Staff.LastName,Role.RoleName AS Role " +
                         $"                                   FROM Staff " +
@@ -274,7 +261,6 @@ namespace Labb_1._SQL
                             connection.Open();
                             using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-
                                 if (reader.HasRows)
                                 {
                                     while (reader.Read())
@@ -298,64 +284,45 @@ namespace Labb_1._SQL
                                 }
                                 else
                                 {
-
                                     Console.WriteLine("No staff where found in the selected class: press [space bar] to try again or enter to return to main");
                                     ConsoleKeyInfo keyInfo4 = Console.ReadKey(true);
                                     if (keyInfo4.Key == ConsoleKey.Spacebar)
                                     {
                                         connection.Close();
-                                        goto StartOfStaff;
-
-                                    }
+                                        goto StartOfStaff;                                    }
                                     else
                                     {
                                         Meny.MainMeny();
                                     }
-
                                 }
-
                             }
                             connection.Close();
-
                         }
                         ExitOrReturn();
                     }
-
-
                     if (keyInfo.Key == ConsoleKey.Enter)
                     {
                         Meny.MainMeny();
                     }
-
                     else
                     {
                         Console.WriteLine("please choose from the list");
-
-                        //Meny.MainMeny();
-
                     }
-
                     break;
                 case 3:
                     Meny.MainMeny();
                     break;
-
             }
         }
         public static void GetStudentsFromClasses(SqlConnection connection)
         {
             Console.Clear();
-            //Användaren ska först få se en lista med alla klasser som finns,
-            //sedan får användaren välja en av klasserna och då skrivs alla elever i den klassen ut.
+
             ListClasses(connection);
-
             Console.WriteLine("Please choose the class you want to view students in or press Enter to return to main meny or press enter :");
-
-            //int selectedIndex;
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
             if (int.TryParse(keyInfo.KeyChar.ToString(), out int selectedClassId))
-
             {
                 using (SqlCommand cmd = new SqlCommand($"SELECT Students.FirstName, Students.LastName, Classes.ClassName " +
                 $"                                   FROM Students " +
@@ -366,7 +333,6 @@ namespace Labb_1._SQL
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-
                         if (reader.HasRows)
                         {
                             while (reader.Read())
@@ -401,8 +367,6 @@ namespace Labb_1._SQL
                 }
                 ExitOrReturn();
             }
-
-
             if (keyInfo.Key == ConsoleKey.Enter)
             {
                 Meny.MainMeny();
@@ -412,10 +376,7 @@ namespace Labb_1._SQL
             {
                 Console.WriteLine("please choose from the list");
 
-                //Meny.MainMeny();
-
             }
-
         }
         public static void ListAllRoles(SqlConnection connection)
         {
@@ -451,7 +412,6 @@ namespace Labb_1._SQL
         }
         public static void GetGrades(SqlConnection connection)
         {
-
             Console.Clear();
             ListAlStudents(connection);
 
@@ -530,7 +490,7 @@ namespace Labb_1._SQL
         }
         public static void GetMedianGrades(SqlConnection connection)
         {
-            StartOfMedianGrades: Console.Clear();
+        StartOfMedianGrades: Console.Clear();
             GetAllClasses(connection);
             Console.WriteLine("Please type the classID that you want to view");
 
@@ -582,8 +542,6 @@ namespace Labb_1._SQL
                             if (keyInfo4.Key == ConsoleKey.Spacebar)
                             {
                                 connection.Close();
-                                
-
                             }
                             else
                             {
@@ -608,8 +566,6 @@ namespace Labb_1._SQL
             else
             {
                 Console.WriteLine("please choose from the list");
-
-                //Meny.MainMeny();
 
             }
 
@@ -704,7 +660,7 @@ namespace Labb_1._SQL
         }
         public static void AddNewStudent(SqlConnection connection)
         {
-            
+
             int selectedClassId;
             ListClasses(connection);
 
